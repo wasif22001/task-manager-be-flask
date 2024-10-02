@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+
+</head>
+
+<body>
+
+    <h1>Task List</h1>
+
+    <form action="/add" method="POST">
+        <label for="content">Task:</label>
+        <input type="text" name="content" id="content" required>
+        <button type="submit">Add Task</button>
+    </form>
+
+
+    <ul>
+        {% for task in tasks %}
+            <li>{{task.content}}
+                <form action="/edit/{{ task.id }}" method="GET" style="display:inline;">
+                    <button type="submit">Edit</button>
+                </form>
+                <form action="/delete/{{ task.id }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+
+
+</html>
